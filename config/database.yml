@@ -29,4 +29,4 @@ production:
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   database: courier_app_production
   username: courier_app
-  password: <%= ENV['COURIER_APP_DATABASE_PASSWORD'] %>
+  password: pyrak
