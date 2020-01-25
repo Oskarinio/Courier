@@ -11,10 +11,11 @@ gem 'will_paginate',              '3.1.8'
 gem 'bootstrap-will_paginate',    '1.0.0'
 gem 'bootstrap-sass',             '3.4.1'
 gem 'puma',                       '3.12.2'
-gem 'sass-rails',                 '5.1.0'
+gem 'sass-rails', '>= 6'
 gem 'webpacker',                  '4.0.7'
 gem 'turbolinks',                 '5.2.0'
 gem 'jbuilder',                   '2.9.1'
+gem 'pg', '>= 0.18', '< 2.0'
 gem 'bootsnap',                   '1.4.4', require: false
 
 group :development, :test do
@@ -41,7 +42,6 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '1.1.4'
   gem 'aws-sdk-s3', '1.46.0', require: false
 end
 
