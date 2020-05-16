@@ -5,11 +5,8 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: postgresql
-  encoding: unicode
+  adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: postgres
-  password: pyrak
   timeout: 5000
 
 development:
@@ -24,9 +21,10 @@ test:
   database: courier_app_test
 
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   database: courier_app_production
   username: courier_app
-  password: pyrak
+  password: <%= ENV['COURIER_APP_DATABASE_PASSWORD'] %>

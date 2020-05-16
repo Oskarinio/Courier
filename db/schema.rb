@@ -33,14 +33,32 @@ ActiveRecord::Schema.define(version: 2020_01_21_130647) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "packages", force: :cascade do |t|
-    t.text "adress"
-    t.boolean "status", default: false
+  create_table "microposts", force: :cascade do |t|
+    t.text "content"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id", "created_at"], name: "index_packagess_on_user_id_and_created_at"
+    t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_microposts_on_user_id"
+  end
+
+  create_table "packages", force: :cascade do |t|
+    t.text "adress"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "created_at"], name: "index_packages_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_packages_on_user_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -60,5 +78,6 @@ ActiveRecord::Schema.define(version: 2020_01_21_130647) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "microposts", "users"
   add_foreign_key "packages", "users"
 end
