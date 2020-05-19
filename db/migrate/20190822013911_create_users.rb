@@ -3,6 +3,9 @@ class CreateUsers < ActiveRecord::Migration[6.0]
     create_table :users do |t|
       t.string :name
       t.string :email
+      t.string :country
+      t.text :instruments , array: true, default: []
+      t.text :genres , array: true, default: []
 
       t.timestamps
     end
